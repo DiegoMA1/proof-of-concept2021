@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="header">
+      <ion-img src="assets/img/logo.png"></ion-img>
+      <ion-title>Perfil</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h2>Direcciones</h2>
+  <div class="address-container">
+    <ion-item
+      *ngFor="let address of addresses, let i = index"
+      (click)="setRecurrent(i)"
+      lines="none"
+    >
+      <ion-icon slot="start" name="pin-outline"></ion-icon>
+      <ion-button>
+        <ion-icon
+          slot="end"
+          class="recurrent"
+          name="radio-button-on-outline"
+          *ngIf="address.recurrent"
+        ></ion-icon>
+        <ion-label>{{address.address}}</ion-label>
+      </ion-button>
+    </ion-item>
+  </div>
+</ion-content>
