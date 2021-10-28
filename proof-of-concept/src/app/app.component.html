@@ -7,8 +7,8 @@
             >Farmacias <br />
             Sanate</ion-list-header
           >
-          <h3>Welcome {{ currentUser.name.split(" ")[0] }}</h3>
-          <ion-note>{{ currentUser.mail }}</ion-note>
+          <h3>Welcome {{ currentUser?.name?.split(" ")[0] }}</h3>
+          <ion-note>{{ currentUser?.mail }}</ion-note>
 
           <ion-menu-toggle
             auto-hide="false"
@@ -31,6 +31,37 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
+      <ion-footer>
+        <ion-item
+          routerDirection="root"
+          routerLink="/login"
+          lines="none"
+          detail="false"
+          *ngIf="currentUser === undefined"
+        >
+          <ion-icon
+            slot="start"
+            [ios]="'person-circle-outline'"
+            [md]="'person-circle-sharp'"
+          ></ion-icon>
+          <ion-label>Log in</ion-label>
+        </ion-item>
+        <ion-item
+          routerDirection="root"
+          routerLink="/login"
+          lines="none"
+          detail="false"
+          *ngIf="currentUser !== undefined"
+          (click)="logout()"
+        >
+          <ion-icon
+            slot="start"
+            [ios]="'person-circle-outline'"
+            [md]="'person-circle-sharp'"
+          ></ion-icon>
+          <ion-label>Log out</ion-label>
+        </ion-item>
+      </ion-footer>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>

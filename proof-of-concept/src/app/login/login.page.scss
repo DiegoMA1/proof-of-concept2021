@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  ion-img {
+    margin-top: 10px;
+    width: 170px;
+    height: auto;
+  }
+  ion-title {
+    margin-bottom: 10px;
+  }
+}
+.login-container {
+  width: 300px;
+  height: 170px;
+  margin: 0 auto;
+  padding: 23px;
+  ion-input {
+    border: 1px solid #4263eb;
+    border-radius: 10px;
+    padding-left: 5px !important;
+    margin-bottom: 10px;
+  }
+}
+.login-card {
+  margin-top: 30px;
+}
