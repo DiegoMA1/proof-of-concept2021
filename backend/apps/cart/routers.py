@@ -61,6 +61,19 @@ def get_cart_router(app):
 
         return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_cart)
 
+    @router.delete("/cart/{cart_id}", description="Delete Cart")
+    async def delete_cart(
+        request: Request,
+        cart_id: str,
+        user: User = Depends(app.fastapi_users.get_current_active_user)
+    ):
+        delete_result = await request.app.db["products"].delete_one({"_id": cart_id})
+
+        if delete_result.deleted_count == 1:
+            return JSONResponse(status_code=status.HTTP_204_NO_CONTENT)
+
+        raise HTTPException(status_code=404, detail=f"Product {cart_id} not found")
+
     return router
 
 
