@@ -11,7 +11,7 @@ def get_product_router(app):
     router = APIRouter()
 
     @router.post(
-        "/",
+        "products/",
         response_description="Add new product",
     )
     async def create_product(
@@ -27,7 +27,7 @@ def get_product_router(app):
 
         return JSONResponse(status_code=status.HTTP_201_CREATED, content=created_product)
 
-    @router.get("/", response_description="List all products")
+    @router.get("products/", response_description="List all products")
     async def list_products(
         request: Request,
         #user: User = Depends(app.fastapi_users.get_current_active_user),
@@ -37,7 +37,7 @@ def get_product_router(app):
             products.append(doc)
         return products
 
-    @router.get("/{id}", response_description="Get a single product")
+    @router.get("products/{id}", response_description="Get a single product")
     async def show_product(
         id: str,
         request: Request,
@@ -48,7 +48,7 @@ def get_product_router(app):
 
         raise HTTPException(status_code=404, detail=f"Product {id} not found")
 
-    @router.put("/{id}", response_description="Update a product")
+    @router.put("products/{id}", response_description="Update a product")
     async def update_product(
         id: str,
         request: Request,
@@ -75,7 +75,7 @@ def get_product_router(app):
 
         raise HTTPException(status_code=404, detail=f"Product {id} not found")
 
-    @router.delete("/{id}", response_description="Delete Product")
+    @router.delete("products/{id}", response_description="Delete Product")
     async def delete_product(
         id: str,
         request: Request,

@@ -1,16 +1,17 @@
+from typing import List
 from fastapi_users.models import BaseUser, BaseUserCreate, BaseUserUpdate, BaseUserDB
 
 
 class User(BaseUser):
-    pass
+    adresses: List[str]
 
 
 class UserCreate(BaseUserCreate):
-    pass
+    adresses: List[str]
 
 
 class UserUpdate(User, BaseUserUpdate):
-    pass
+    adresses: List[str]
 
 
 class UserDB(User, BaseUserDB):

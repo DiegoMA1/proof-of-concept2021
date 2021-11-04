@@ -9,6 +9,7 @@ from apps.user.auth import jwt_authentication
 from apps.user.models import User, UserCreate, UserUpdate, UserDB
 from apps.user.routers import get_users_router
 from apps.product.routers import get_product_router
+from apps.cart.routers import get_cart_router
 
 app = FastAPI()
 
@@ -22,6 +23,7 @@ async def configure_db_and_routes():
 
     user_db = MongoDBUserDatabase(UserDB, app.db["users"])
     products_db = MongoDBUserDatabase(UserDB, app.db["products"])
+    carts_db = MongoDBUserDatabase(UserDB, app.db["carts"])
 
 
     app.fastapi_users = FastAPIUsers(
@@ -34,7 +36,9 @@ async def configure_db_and_routes():
     )
 
     app.include_router(get_users_router(app))
+    app.include_router(get_cart_router(app), tags=["carts"])
     app.include_router(get_product_router(app), tags=["products"])
+    
 
 
 @app.on_event("shutdown")
