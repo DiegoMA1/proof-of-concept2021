@@ -33,17 +33,3 @@ class CartModel(BaseModel):
             }
         }
 
-
-class UpdateCartModel(BaseModel):
-    products: List[ProductModel]
-
-    class Config:
-        schema_extra = {
-            "products":{
-                "id": "00010203-0405-0607-0809-0a0b0c0d0e0f",
-                "name": "Postinor unidosis 1 tableta caja",
-                "price": 110,
-                "description": "Levonorgestrel 1.5 MG",
-                "img": "https://assets2.farmaciasanpablo.com.mx/uploads-prod/productimages/Fsp275Wx275H_5640003_1dkmur4ra"
-            }
-        }
